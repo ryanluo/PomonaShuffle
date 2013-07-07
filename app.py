@@ -9,12 +9,15 @@ app = Flask(__name__)
 app.jinja_env.add_extension('jinja2.ext.do')
 app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
-mongodb_uri = 'mongodb://pomonashuffle:arrokearroke@ds033907.mongolab.com:33907/pomonashuffle'
-db_name = 'pomonashuffle'
-connection = pymongo.Connection(mongodb_uri)
-db = connection[db_name]
+# mongodb_uri = 'mongodb://pomonashuffle:arrokearroke@ds033907.mongolab.com:33907/pomonashuffle'
+# db_name = 'pomonashuffle'
+# connection = pymongo.Connection(mongodb_uri)
+# db = connection[db_name]
 
-course_col = db.course_col
+# course_col = db.course_col
+connection = MongoClient("ds029638.mongolab.com", 29638) 
+db = connection["api"]
+db.authenticate("alokedesai","domino")
 
 @app.route('/results', methods=["POST","GET"])
 def results():
