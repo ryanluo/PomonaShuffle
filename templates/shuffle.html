@@ -62,8 +62,6 @@
     </ul>
 
   </div> -->
-  <div class="descrip" style = " right: 10%; bottom: 3%; font-family:'Raleway',serif; font-weight: 400; color: #FFFFFF; text-align: center;"><center style = "text-shadow: black 0.1em 0.1em 0.2em;"><footer>Click on each card to scroll through your current deck. Press space to get a new deck! </footer></center></div>
-  <div class="descrip" style = " right: 10%; bottom: 3%; font-family:'Raleway',serif; font-weight: 400; color: #FFFFFF; text-align: center;"><center style = "text-shadow: black 0.1em 0.1em 0.2em;"><footer>A web application by Hong Suh '16, Ryan Luo '16, Mauricio Molina '15, and Aloke Desai '16 </footer></center></div>
 
   
   <div id="inline1" style="width:400px;display:none;">
@@ -89,7 +87,7 @@
     {% do course_list.reverse() %}
     {% for i in range(0,size) %}
       
-      course_list.push({name: '{{course_list[i]['name']}}', major: '{{course_list[i]['major']}}', number: '{{course_list[i]['number']}}',teacher: '{{course_list[i]['teacher']}}',school: '{{course_list[i]['school']}}', descrip: '{{course_list[i]['description']}}'})
+      course_list.push({name: '{{course_list[i]['name']}}', major: '{{course_list[i]['major']}}', number: '{{course_list[i]['number']}}',teacher: '{{course_list[i]['teacher']}}',school: '{{course_list[i]['school']}}', descrip: ''})
 ;
     {%endfor%}
     function shuffle(array) {
