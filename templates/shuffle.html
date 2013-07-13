@@ -369,7 +369,7 @@ $('#shuffle a').click(function(){
               return false;
           });
       reload = function(){
-        if($('#timeout').hasClass('animating')){
+        if(animating){
           return false;
         }else{
           animating = true;
@@ -380,6 +380,7 @@ $('#shuffle a').click(function(){
           var stop = (counter+13)
           $('#timeout').stop().toggleClass("animating").fadeIn().delay(500).fadeOut(400,function(){
             $('#timeout').toggleClass("animating");
+	    animating=false;
           });
           $('#container').isotope('remove', $oldItems);
           
