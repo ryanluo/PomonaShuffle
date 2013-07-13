@@ -78,7 +78,7 @@
   </div>
   <div id="large"></div>
   <div id="background"></div>
-  
+  <div id="timeout"></div>
     <script>  
 
     var size = {{size}};
@@ -123,9 +123,16 @@
                                                 $(window).scrollLeft()) + "px");
     return this;
 }
+    var animating = false;
+    
     $(document).ready(function(){
       $('#container').center();
       $(window).resize(function(){$('#container').center()});
+      $('#timeout').css({background: '#000', 'z-index': 999, display: 'none', position: 'absolute', float: 'left'});
+      var w = $('#container').width();
+      var h = $('#container').height();
+      var p = $('#container').position();
+      $('#timeout').css({width: w, height: '500px', left: p.left, top: p.top}).center().css("top","+=50px");
       $('.card:nth-child(6)').toggleClass('focus')
     });
     function isAnimating() {
@@ -361,41 +368,53 @@ $('#shuffle a').click(function(){
 
               return false;
           });
+      reload = function(){
+        if($('#timeout').hasClass('animating')){
+          return false;
+        }else{
+          animating = true;
+          var p = $('#container').position();
+          $('#timeout').css({left: p.left, top: p.top});
+          var $oldItems = $('.card');
+          course_list = shuffle(course_list);
+          var stop = (counter+13)
+          $('#timeout').stop().toggleClass("animating").fadeIn().delay(500).fadeOut(400,function(){
+            $('#timeout').toggleClass("animating");
+          });
+          $('#container').isotope('remove', $oldItems);
+          
+          
+          for(var i = counter; i < stop; i++){
+            counter++;
+          if(i==size){
+            i=0;
+            counter=0;
+            break;
+          }
+          var newEls = create(counter,course_list[(i%size)].name,course_list[(i%size)].major,course_list[(i%size)].number,course_list[(i%size)].teacher,course_list[(i%size)].school,course_list[(i%size)].descrip);
 
+          var $newEls = $(newEls);
+         if(counter%13+1==6)
+          $newEls.addClass('focus');
+
+          $('#container').append( $newEls ).isotope( 'appended', $newEls );
+          
+          }
+          $('#container').find('.card').each(function(){
+            var $this = $(this);
+            $this.addClass('width2');
+            $this.addClass('height2');
+            $this.find('h3,p').hide();
+          });
+        }
+      }
       $(document).keypress(function(e){
                   if(e.which==27){
                       $("#background").fadeOut("slow");
                       $("#large").fadeOut("slow");
                   }
                   if(e.which==32){
-                    var $oldItems = $('.card');
-                    course_list = shuffle(course_list);
-                    var stop = (counter+13)
-                    
-                    $('#container').isotope('remove', $oldItems);
-                    
-                    for(var i = counter; i < stop; i++){
-                      counter++;
-                    if(i==size){
-                      i=0;
-                      counter=0;
-                      break;
-                    }
-                    var newEls = create(counter,course_list[(i%size)].name,course_list[(i%size)].major,course_list[(i%size)].number,course_list[(i%size)].teacher,course_list[(i%size)].school,course_list[(i%size)].descrip);
-
-                    var $newEls = $(newEls);
-                   if(counter%13+1==6)
-                    $newEls.addClass('focus');
-
-                    $('#container').append( $newEls ).isotope( 'appended', $newEls );
-                    
-                    }
-                    $('#container').find('.card').each(function(){
-                      var $this = $(this);
-                      $this.addClass('width2');
-                      $this.addClass('height2');
-                      $this.find('h3,p').hide();
-                    });
+                    reload();
                   }
               });
 
