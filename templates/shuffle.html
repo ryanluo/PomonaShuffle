@@ -87,8 +87,7 @@
     {% do course_list.reverse() %}
     {% for i in range(0,size) %}
       
-      course_list.push({name: '{{course_list[i]['name']}}', major: '{{course_list[i]['major']}}', number: '{{course_list[i]['number']}}',teacher: '{{course_list[i]['teacher']}}',school: '{{course_list[i]['school']}}', descrip: ''})
-;
+      course_list.push({name: '{{course_list[i]['name']}}', major: '{{course_list[i]['major']}}', number: '{{course_list[i]['number']}}',teacher: '{{course_list[i]['teacher']}}',school: '{{course_list[i]['school']}}', descrip: '{{course_list[i]['description']}}'});
     {%endfor%}
     function shuffle(array) {
       var currentIndex = array.length
