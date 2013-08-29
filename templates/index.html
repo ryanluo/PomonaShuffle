@@ -5,6 +5,7 @@
                     <link href='http://fonts.googleapis.com/css?family=Raleway:300,500,700' rel='stylesheet' type='text/css'>
                     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
                       <link rel="stylesheet" href="static/chosen/chosen.css" />
+                      <link rel="stylesheet" href="static/component.css" />
     <script src="static/chosen/chosen.jquery.js"></script>
                         
 
@@ -33,7 +34,8 @@
 
       <h3 id="test" style="font-weight: bold"> Pomona Shuffle helps you explore the 5C course catalog.</h3>
       <center>
-        <a href="#" style="text-decoration: none; color: #fff"><div class="orbutton" style="font-weight: bold">Get Started </div></a>
+   <!--      <a href="#" style="text-decoration: none; color: #fff"><div class="orbutton" style="font-weight: bold">Get Started </div></a> -->
+   <button id = "orbutton" class="btn btn-2 btn-2a orange scroll" style="font-size: 14px; text-decoration: none;" >Get Started</button>
       </center>
       </div>
     </div>
@@ -204,7 +206,7 @@
     });
 
     $(function(){
-      $(".orbutton").click(function(){
+      $("#orbutton").click(function(){
         var major = $("select.major").val();
         if(major===""){
           major="any";
