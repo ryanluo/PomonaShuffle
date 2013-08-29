@@ -29,6 +29,8 @@ body {
           background-image: url("background.png");
           font-weight: 300;
           overflow:hidden;
+          margin: 0;
+          padding: 0;
 }
 .header {
   float:left;
