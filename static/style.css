@@ -26,11 +26,13 @@ h6 {
 }
 body {
           font-family: "Raleway","Helvetica", "Arial", sans-serif;
-          background-image: url("background.png");
+        /*  background-image: url("background.png");*/
           font-weight: 300;
-          overflow:hidden;
+         /* overflow:hidden;*/
           margin: 0;
           padding: 0;
+          min-width: 700px;
+
 }
 .header {
   float:left;
@@ -163,3 +165,23 @@ input[type=text]:focus, textarea:focus {
   margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
 }
+.main {
+   background: black url("Main.png") no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #fff;
+    font-family: "Helvetica", "Arial", "sans-serif"
+   }
+ .no-background-size .main{
+  min-height: 100%;
+  max-height: 100%;
+ }
+
+ .background-size .main{
+  -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+ }
